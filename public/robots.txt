@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://vedio-chat-leyj.onrender.com/sitemap.xml
