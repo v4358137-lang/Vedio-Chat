@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Find Friends</title>
+    <meta property="og:title" content="Find Friends">
+<meta property="og:description" content="Meet new friends instantly with video chat">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://video-chat-server-f2wn.onrender.com">
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div class="bg-shape bg-shape-a"></div>
+    <div class="bg-shape bg-shape-b"></div>
+
+    <main class="app">
+      <header class="topbar">
+        <h1>Find friends</h1>
+        <p>meet new friends instantly</p>
+      </header>
+
+      <section id="joinScreen" class="card join-card">
+        <h2>Start Chat</h2>
+        <p class="muted">Enter your details to connect with a random stranger.</p>
+
+        <div class="form-group">
+          <label for="nameInput">Name</label>
+          <input id="nameInput" type="text" maxlength="30" placeholder="Your name" />
+        </div>
+
+        <div class="form-group">
+          <label for="genderSelect">Gender</label>
+          <select id="genderSelect">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <button id="startBtn" class="btn btn-primary">Start Chat</button>
+      </section>
+
+      <section id="chatScreen" class="chat-layout hidden">
+        <div class="video-column">
+          <div class="status-card">
+            <span id="statusBadge" class="status-badge">Waiting...</span>
+            <span id="strangerLabel" class="stranger-label">Stranger</span>
+          </div>
+
+          <div class="video-grid">
+            <div class="video-box">
+              <video id="localVideo" autoplay playsinline muted></video>
+              <span class="video-tag">You</span>
+            </div>
+            <div class="video-box">
+              <video id="remoteVideo" autoplay playsinline></video>
+              <span class="video-tag" id="remoteTag">Stranger</span>
+            </div>
+          </div>
+
+          <div class="controls">
+            <button id="muteBtn" class="btn btn-dark">Mute</button>
+            <button id="cameraBtn" class="btn btn-dark">Camera Off</button>
+            <button id="nextBtn" class="btn btn-warning">Next</button>
+            <button id="endBtn" class="btn btn-danger">End Chat</button>
+            <button id="reportBtn" class="btn btn-outline">Report</button>
+          </div>
+        </div>
+
+        <aside class="chat-column card">
+          <h3>Text Chat</h3>
+          <div id="messages" class="messages"></div>
+          <div id="typing" style="color: gray; font-size: 14px;"></div>
+          <div class="message-form">
+            <input id="messageInput" type="text" maxlength="500" placeholder="Type message..." />
+            <button id="sendBtn" class="btn btn-primary">Send</button>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

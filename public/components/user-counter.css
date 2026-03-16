@@ -1,0 +1,201 @@
+/* User Counter Styles */
+.user-counter {
+  display: flex;
+  gap: 1rem;
+  margin-left: auto;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.counter-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+}
+
+.counter-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.counter-icon {
+  font-size: 1.2rem;
+  opacity: 0.8;
+}
+
+.counter-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 40px;
+}
+
+.counter-number {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.counter-label {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  line-height: 1;
+}
+
+/* Animations */
+.counter-number.pulse {
+  animation: pulse 0.3s ease-out;
+}
+
+.user-counter.activity-pulse {
+  animation: activityPulse 1s ease-out;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes activityPulse {
+  0% {
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(1);
+  }
+  50% {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.02);
+  }
+  100% {
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(1);
+  }
+}
+
+/* Trend indicators */
+.trend-indicator {
+  font-size: 0.8rem;
+  margin-left: 0.25rem;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.trend-up {
+  color: #28a745;
+}
+
+.trend-down {
+  color: #dc3545;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .user-counter {
+    gap: 0.5rem;
+    padding: 0.25rem 0.5rem;
+  }
+  
+  .counter-item {
+    padding: 0.25rem 0.5rem;
+  }
+  
+  .counter-icon {
+    font-size: 1rem;
+  }
+  
+  .counter-number {
+    font-size: 0.9rem;
+  }
+  
+  .counter-label {
+    font-size: 0.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .user-counter {
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 0.25rem;
+  }
+  
+  .counter-item {
+    padding: 0.25rem;
+    min-width: auto;
+  }
+  
+  .counter-info {
+    flex-direction: row;
+    gap: 0.25rem;
+  }
+  
+  .counter-label {
+    text-transform: none;
+  }
+}
+
+/* Dark theme support */
+@media (prefers-color-scheme: dark) {
+  .user-counter {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .counter-item {
+    background: rgba(0, 0, 0, 0.2);
+  }
+  
+  .counter-item:hover {
+    background: rgba(0, 0, 0, 0.3);
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .user-counter {
+    background: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.4);
+  }
+  
+  .counter-item {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+  
+  .counter-number {
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  }
+  
+  .counter-label {
+    color: rgba(255, 255, 255, 0.9);
+  }
+}

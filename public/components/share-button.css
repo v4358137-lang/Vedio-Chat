@@ -1,0 +1,368 @@
+/* Share Button Styles */
+.share-container {
+  position: relative;
+  display: inline-block;
+}
+
+.btn-share {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-share:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+}
+
+.btn-share:active {
+  transform: translateY(0);
+}
+
+.share-icon {
+  font-size: 1.1rem;
+}
+
+/* Share Menu */
+.share-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 0.5rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  width: 320px;
+  max-height: 500px;
+  overflow-y: auto;
+  z-index: 1000;
+  animation: slideUp 0.3s ease-out;
+}
+
+.share-menu.hidden {
+  display: none;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.share-menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.share-menu-header h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.close-share-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #6c757d;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s;
+}
+
+.close-share-btn:hover {
+  background: #f8f9fa;
+  color: #333;
+}
+
+.share-options {
+  padding: 1rem;
+}
+
+.share-option {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  padding: 1rem;
+  border: none;
+  border-radius: 8px;
+  background: #f8f9fa;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-bottom: 0.5rem;
+  text-align: left;
+}
+
+.share-option:hover {
+  background: #e9ecef;
+  transform: translateX(5px);
+}
+
+.share-option:last-child {
+  margin-bottom: 0;
+}
+
+.share-option-icon {
+  font-size: 1.5rem;
+  width: 40px;
+  text-align: center;
+}
+
+.share-option-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.share-option-text strong {
+  color: #333;
+  font-size: 0.9rem;
+}
+
+.share-option-text span {
+  color: #6c757d;
+  font-size: 0.8rem;
+}
+
+/* Share URL Container */
+.share-url-container {
+  display: flex;
+  gap: 0.5rem;
+  padding: 1rem;
+  border-top: 1px solid #e9ecef;
+}
+
+.share-url-container input {
+  flex: 1;
+  padding: 0.75rem;
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  background: #f8f9fa;
+}
+
+.share-url-container input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+.share-url-container .btn {
+  padding: 0.75rem 1rem;
+  border: 1px solid #6c757d;
+  border-radius: 6px;
+  background: white;
+  color: #6c757d;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.share-url-container .btn:hover {
+  background: #6c757d;
+  color: white;
+}
+
+.share-url-container .btn-success {
+  background: #28a745;
+  color: white;
+  border-color: #28a745;
+}
+
+/* Notification Styles */
+.notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  color: white;
+  z-index: 10001;
+  max-width: 300px;
+  animation: slideInRight 0.3s ease-out;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.notification-success {
+  background: #28a745;
+}
+
+.notification-info {
+  background: #17a2b8;
+}
+
+.notification-error {
+  background: #dc3545;
+}
+
+.notification-close {
+  background: none;
+  border: none;
+  color: inherit;
+  font-size: 1.2rem;
+  cursor: pointer;
+  margin-left: 1rem;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .share-menu {
+    width: 280px;
+    right: -50px;
+  }
+  
+  .btn-share {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .share-icon {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .share-menu {
+    width: 260px;
+    right: -80px;
+  }
+  
+  .share-option {
+    padding: 0.75rem;
+  }
+  
+  .share-option-icon {
+    font-size: 1.2rem;
+    width: 30px;
+  }
+  
+  .share-option-text strong {
+    font-size: 0.8rem;
+  }
+  
+  .share-option-text span {
+    font-size: 0.7rem;
+  }
+}
+
+/* Dark theme support */
+@media (prefers-color-scheme: dark) {
+  .share-menu {
+    background: #2d3748;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  }
+  
+  .share-menu-header {
+    border-bottom-color: #4a5568;
+  }
+  
+  .share-menu-header h3 {
+    color: #e2e8f0;
+  }
+  
+  .close-share-btn {
+    color: #a0aec0;
+  }
+  
+  .close-share-btn:hover {
+    background: #4a5568;
+    color: #e2e8f0;
+  }
+  
+  .share-option {
+    background: #4a5568;
+  }
+  
+  .share-option:hover {
+    background: #718096;
+  }
+  
+  .share-option-text strong {
+    color: #e2e8f0;
+  }
+  
+  .share-option-text span {
+    color: #a0aec0;
+  }
+  
+  .share-url-container {
+    border-top-color: #4a5568;
+  }
+  
+  .share-url-container input {
+    background: #4a5568;
+    border-color: #718096;
+    color: #e2e8f0;
+  }
+  
+  .share-url-container input:focus {
+    border-color: #63b3ed;
+  }
+  
+  .share-url-container .btn {
+    background: #4a5568;
+    color: #e2e8f0;
+    border-color: #718096;
+  }
+  
+  .share-url-container .btn:hover {
+    background: #718096;
+  }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .btn-share {
+    border: 2px solid #fff;
+  }
+  
+  .share-menu {
+    border: 2px solid #333;
+  }
+  
+  .share-option {
+    border: 1px solid #333;
+  }
+  
+  .share-url-container input {
+    border: 2px solid #333;
+  }
+}

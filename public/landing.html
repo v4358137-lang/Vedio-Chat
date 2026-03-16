@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Friends - Random Video Chat with Strangers | Meet New People Online</title>
+    <meta name="description" content="Join Find Friends for safe, fun random video chats with strangers worldwide. Meet new people instantly through live video calls. Free to use, no registration required.">
+    <meta name="keywords" content="random video chat, video chat with strangers, meet new people, online chat, video calling, random chat, omegle alternative, video chat app">
+    <meta name="author" content="Find Friends">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://video-chat-server-f2wn.onrender.com">
+    <meta property="og:title" content="Find Friends - Random Video Chat with Strangers">
+    <meta property="og:description" content="Meet new people instantly through random video chats. Safe, fun, and free to use. Join thousands of users worldwide!">
+    <meta property="og:image" content="https://video-chat-server-f2wn.onrender.com/images/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://video-chat-server-f2wn.onrender.com">
+    <meta property="twitter:title" content="Find Friends - Random Video Chat">
+    <meta property="twitter:description" content="Meet new people instantly through random video chats. Safe, fun, and free!">
+    <meta property="twitter:image" content="https://video-chat-server-f2wn.onrender.com/images/og-image.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://video-chat-server-f2wn.onrender.com">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="alternate icon" href="/favicon.ico">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/components/age-verification.css">
+    <style>
+        /* Landing Page Specific Styles */
+        .landing-container {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section {
+            padding: 4rem 2rem;
+            text-align: center;
+            color: white;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+        }
+        
+        .hero-description {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            opacity: 0.8;
+            animation: fadeInUp 0.8s ease-out 0.4s backwards;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.8s ease-out 0.6s backwards;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+        
+        .features-section {
+            padding: 4rem 2rem;
+            background: white;
+        }
+        
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .features-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 3rem;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        
+        .feature-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-title {
+            font-size: 1.3rem;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-description {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .stats-section {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .stats-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .stats-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .safety-section {
+            padding: 4rem 2rem;
+            background: white;
+        }
+        
+        .safety-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .safety-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 3rem;
+        }
+        
+        .safety-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .safety-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: #e3f2fd;
+            border-radius: 10px;
+        }
+        
+        .safety-icon {
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+        
+        .safety-text h4 {
+            color: #1565c0;
+            margin-bottom: 0.5rem;
+        }
+        
+        .safety-text p {
+            color: #666;
+            margin: 0;
+        }
+        
+        .footer {
+            padding: 3rem 2rem;
+            background: #2d3748;
+            color: white;
+            text-align: center;
+        }
+        
+        .footer-content {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            opacity: 1;
+        }
+        
+        .footer-text {
+            opacity: 0.7;
+            margin: 0;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .features-title,
+            .stats-title,
+            .safety-title {
+                font-size: 2rem;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="landing-container">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <h1 class="hero-title">Find Friends</h1>
+            <p class="hero-subtitle">Random Video Chat with Strangers</p>
+            <p class="hero-description">
+                Connect with people from around the world through safe, fun, and instant video chats. 
+                No registration required - just click and start chatting!
+            </p>
+            <a href="/" class="cta-button">Start Chatting Now</a>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features-section">
+            <div class="features-container">
+                <h2 class="features-title">Why Choose Find Friends?</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🎥</div>
+                        <h3 class="feature-title">HD Video Quality</h3>
+                        <p class="feature-description">
+                            Crystal-clear video calls with WebRTC technology for the best chat experience
+                        </p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">🔒</div>
+                        <h3 class="feature-title">Safe & Secure</h3>
+                        <p class="feature-description">
+                            Advanced safety features including reporting, blocking, and 18+ age verification
+                        </p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">🌍</div>
+                        <h3 class="feature-title">Global Community</h3>
+                        <p class="feature-description">
+                            Connect with people from different cultures and backgrounds worldwide
+                        </p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3 class="feature-title">Instant Matching</h3>
+                        <p class="feature-description">
+                            Smart algorithm connects you with compatible strangers in seconds
+                        </p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">💬</div>
+                        <h3 class="feature-title">Text & Video Chat</h3>
+                        <p class="feature-description">
+                            Switch between video and text chat seamlessly for flexible communication
+                        </p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">🎁</div>
+                        <h3 class="feature-title">Free to Use</h3>
+                        <p class="feature-description">
+                            No hidden costs or subscriptions - enjoy unlimited video chats completely free
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="stats-section">
+            <div class="stats-container">
+                <h2 class="stats-title">Join Our Growing Community</h2>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="50000">50K+</div>
+                        <div class="stat-label">Active Users</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="1000000">1M+</div>
+                        <div class="stat-label">Conversations Daily</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="150">150+</div>
+                        <div class="stat-label">Countries</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="99">99%</div>
+                        <div class="stat-label">Uptime</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Safety Section -->
+        <section class="safety-section">
+            <div class="safety-container">
+                <h2 class="safety-title">Your Safety is Our Priority</h2>
+                <div class="safety-grid">
+                    <div class="safety-item">
+                        <div class="safety-icon">🔞</div>
+                        <div class="safety-text">
+                            <h4>Age Verification</h4>
+                            <p>18+ age confirmation to ensure a mature community</p>
+                        </div>
+                    </div>
+                    
+                    <div class="safety-item">
+                        <div class="safety-icon">🚫</div>
+                        <div class="safety-text">
+                            <h4>Report & Block</h4>
+                            <p>Easy reporting and blocking system for inappropriate behavior</p>
+                        </div>
+                    </div>
+                    
+                    <div class="safety-item">
+                        <div class="safety-icon">🛡️</div>
+                        <div class="safety-text">
+                            <h4>Privacy Protection</h4>
+                            <p>No recordings stored - your privacy is guaranteed</p>
+                        </div>
+                    </div>
+                    
+                    <div class="safety-item">
+                        <div class="safety-icon">🤖</div>
+                        <div class="safety-text">
+                            <h4>Bot Prevention</h4>
+                            <p>Advanced bot detection and prevention systems</p>
+                        </div>
+                    </div>
+                    
+                    <div class="safety-item">
+                        <div class="safety-icon">📋</div>
+                        <div class="safety-text">
+                            <h4>Clear Guidelines</h4>
+                            <p>Comprehensive terms of service and community guidelines</p>
+                        </div>
+                    </div>
+                    
+                    <div class="safety-item">
+                        <div class="safety-icon">👥</div>
+                        <div class="safety-text">
+                            <h4>Moderation</h4>
+                            <p>24/7 monitoring and abuse logging system</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="/">Home</a>
+                    <a href="/terms">Terms of Service</a>
+                    <a href="/privacy">Privacy Policy</a>
+                    <a href="/#safety">Safety Center</a>
+                    <a href="/#contact">Contact</a>
+                </div>
+                <p class="footer-text">
+                    © 2024 Find Friends. Making the world more connected, one conversation at a time.
+                </p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Age Verification Script -->
+    <script src="/components/age-verification.js"></script>
+    
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Find Friends",
+        "description": "Random video chat platform for meeting new people safely",
+        "url": "https://video-chat-server-f2wn.onrender.com",
+        "applicationCategory": "Social Networking",
+        "operatingSystem": "Web Browser",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "featureList": [
+            "Random video chat",
+            "Text chat",
+            "Age verification",
+            "User reporting",
+            "Blocking system",
+            "Privacy protection"
+        ]
+    }
+    </script>
+</body>
+</html>
