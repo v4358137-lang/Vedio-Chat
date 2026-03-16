@@ -9,68 +9,6 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://video-chat-server-f2wn.onrender.com">
     <link rel="stylesheet" href="/style.css" />
-    <style>
-        .terms-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10000;
-        }
-        .terms-modal {
-            background: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-            max-width: 350px;
-            text-align: center;
-        }
-        .terms-modal h3 {
-            color: #333;
-            margin-bottom: 1rem;
-            font-size: 1.2rem;
-        }
-        .terms-modal p {
-            color: #666;
-            line-height: 1.5;
-            margin-bottom: 1.5rem;
-        }
-        .terms-modal .checkbox-group {
-            margin-bottom: 1.5rem;
-        }
-        .terms-modal input[type="checkbox"] {
-            margin-right: 0.5rem;
-        }
-        .terms-modal label {
-            color: #333;
-            cursor: pointer;
-            font-weight: normal;
-        }
-        .terms-modal button {
-            padding: 0.5rem 1.5rem;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: 500;
-            margin: 0 0.5rem;
-        }
-        .btn-accept {
-            background: #007bff;
-            color: white;
-        }
-        .btn-accept:hover {
-            background: #0056b3;
-        }
-        .btn-accept:disabled {
-            background: #6c757d;
-            cursor: not-allowed;
-        }
-    </style>
   </head>
   <body>
     <div class="bg-shape bg-shape-a"></div>
@@ -80,28 +18,8 @@
       <header class="topbar">
         <h1>Find friends </h1>
         <p>meet new friends instantly</p>
+        
       </header>
-
-      <!-- Simple Terms Popup -->
-      <div id="termsOverlay" class="terms-overlay">
-        <div class="terms-modal">
-          <h3>Terms of Service</h3>
-          <p>Please agree to our Terms of Service to continue.</p>
-          
-          <div class="checkbox-group">
-            <input type="checkbox" id="termsCheckbox">
-            <label for="termsCheckbox">I agree to Terms of Service.</label>
-          </div>
-          
-          <div>
-            <a href="terms-of-service.html" target="_blank" style="color: #007bff; text-decoration: none;">View Terms of Service</a>
-          </div>
-          
-          <div>
-            <button id="acceptBtn" class="btn-accept" disabled>Agree</button>
-          </div>
-        </div>
-      </div>
 
       <section id="joinScreen" class="card join-card">
         <h2>Start Chat</h2>
@@ -122,6 +40,44 @@
         </div>
 
         <button id="startBtn" class="btn btn-primary">Start Chat</button>
+      </section>
+
+      <section id="chatScreen" class="chat-layout hidden">
+        <div class="video-column">
+          <div class="status-card">
+            <span id="statusBadge" class="status-badge">Waiting...</span>
+            <span id="strangerLabel" class="stranger-label">Stranger</span>
+          </div>
+
+          <div class="video-grid">
+            <div class="video-box">
+              <video id="localVideo" autoplay playsinline muted></video>
+              <span class="video-tag">You</span>
+            </div>
+            <div class="video-box">
+              <video id="remoteVideo" autoplay playsinline></video>
+              <span class="video-tag" id="remoteTag">Stranger</span>
+            </div>
+          </div>
+
+          <div class="controls">
+            <button id="muteBtn" class="btn btn-dark">Mute</button>
+            <button id="cameraBtn" class="btn btn-dark">Camera Off</button>
+            <button id="nextBtn" class="btn btn-warning">Next</button>
+            <button id="endBtn" class="btn btn-danger">End Chat</button>
+            <button id="reportBtn" class="btn btn-outline">Report</button>
+          </div>
+        </div>
+
+        <aside class="chat-column card">
+          <h3>Text Chat</h3>
+          <div id="messages" class="messages"></div>
+          <div id="typing" style="color: gray; font-size: 14px;"></div>
+          <div class="message-form">
+            <input id="messageInput" type="text" maxlength="500" placeholder="Type message..." />
+            <button id="sendBtn" class="btn btn-primary">Send</button>
+          </div>
+        </aside>
       </section>
     </main>
 
