@@ -8,7 +8,7 @@ const genderSelect = document.getElementById("genderSelect");
 const startBtn = document.getElementById("startBtn");
 
 // Age verification elements
-const ageVerificationOverlay = document.getElementById("ageVerificationOverlay");
+const verificationOverlay = document.getElementById("verificationOverlay");
 const ageCheckbox = document.getElementById("ageCheckbox");
 const agreeBtn = document.getElementById("agreeBtn");
 const disagreeBtn = document.getElementById("disagreeBtn");
@@ -39,10 +39,10 @@ let isCameraOff = false;
 function checkAgeVerification() {
   const ageVerified = localStorage.getItem('ageVerified');
   if (ageVerified === 'true') {
-    ageVerificationOverlay.style.display = 'none';
+    verificationOverlay.style.display = 'none';
     return true;
   } else {
-    ageVerificationOverlay.style.display = 'flex';
+    verificationOverlay.style.display = 'flex';
     return false;
   }
 }
@@ -51,7 +51,7 @@ function setupAgeVerification() {
   agreeBtn.addEventListener('click', () => {
     if (ageCheckbox.checked) {
       localStorage.setItem('ageVerified', 'true');
-      ageVerificationOverlay.style.display = 'none';
+      verificationOverlay.style.display = 'none';
     } else {
       alert('Please confirm you are 18 years or older to continue.');
     }
