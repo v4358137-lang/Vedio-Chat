@@ -7,11 +7,6 @@ const nameInput = document.getElementById("nameInput");
 const genderSelect = document.getElementById("genderSelect");
 const startBtn = document.getElementById("startBtn");
 
-// Terms popup elements
-const termsOverlay = document.getElementById("termsOverlay");
-const termsCheckbox = document.getElementById("termsCheckbox");
-const acceptBtn = document.getElementById("acceptBtn");
-
 const localVideo = document.getElementById("localVideo");
 const remoteVideo = document.getElementById("remoteVideo");
 const remoteTag = document.getElementById("remoteTag");
@@ -33,43 +28,9 @@ let peerConnection = null;
 let pendingCandidates = [];
 let isMuted = false;
 let isCameraOff = false;
-
-// Terms verification
-function checkTermsVerification() {
-  const termsAccepted = localStorage.getItem('termsAccepted');
-  if (termsAccepted === 'true') {
-    termsOverlay.style.display = 'none';
-    return true;
-  } else {
-    termsOverlay.style.display = 'flex';
-    return false;
-  }
-}
-
-function setupTermsVerification() {
-  // Enable/disable accept button based on checkbox
-  termsCheckbox.addEventListener('change', () => {
-    acceptBtn.disabled = !termsCheckbox.checked;
-  });
-
-  acceptBtn.addEventListener('click', () => {
-    if (termsCheckbox.checked) {
-      localStorage.setItem('termsAccepted', 'true');
-      termsOverlay.style.display = 'none';
-    }
-  });
-
-  // Auto-check on load
-  checkTermsVerification();
-}
-
-// Initialize terms verification
-setupTermsVerification();
-
 let isMatched = false;
 let username = "";
 
-startBtn.addEventListener("click", startChatFlow);
 
 const rtcConfig = {
   iceServers: [
@@ -380,33 +341,9 @@ endBtn.addEventListener("click", () => {
 reportBtn.addEventListener("click", () => {
   if (!isMatched) return;
 
-  const reasons = [
-    "Inappropriate behavior or content",
-    "Harassment or bullying", 
-    "Threats or abusive language",
-    "Sexual content without consent",
-    "Asking for personal information",
-    "Scam or fraudulent activity",
-    "Underage user",
-    "Recording without permission",
-    "Hate speech or discrimination",
-    "Violence or dangerous behavior"
-  ];
-  
-  const reason = prompt("Reason for reporting this user:\n\n" + reasons.map((r, i) => `${i+1}. ${r}`).join('\n'), "Abusive behavior");
-  
-  if (reason) {
-    socket.emit("report-user", { reason });
-    addSystemMessage("Report submitted. Thank you for helping keep our community safe.");
-    
-    // Log report for safety monitoring
-    console.log('[SAFETY_REPORT]', {
-      timestamp: new Date().toISOString(),
-      reporter: username,
-      reason: reason,
-      action: 'user_reported'
-    });
-  }
+  const reason = prompt("Reason for reporting this user:", "Abusive behavior") || "User reported";
+  socket.emit("report-user", { reason });
+  addSystemMessage("Report submitted.");
 });
 
 sendBtn.addEventListener("click", sendMessage);
@@ -492,28 +429,6 @@ socket.on("webrtc-ice-candidate", async ({ candidate }) => {
 socket.on("chat-message", ({ from, message }) => {
   if (!message) return;
   if (from === socket.id) return; // Ignore echoed own message.
-  
-  // Safety monitoring for inappropriate content
-  const inappropriateWords = ['fuck', 'shit', 'ass', 'bitch', 'nigger', 'kill', 'rape', 'sex', 'nude', 'naked'];
-  const containsInappropriate = inappropriateWords.some(word => 
-    message.toLowerCase().includes(word.toLowerCase())
-  );
-  
-  if (containsInappropriate) {
-    addSystemMessage("⚠️ Inappropriate content detected. Please keep conversations respectful.");
-    
-    // Auto-safety logging
-    console.log('[SAFETY_MONITORING]', {
-      timestamp: new Date().toISOString(),
-      from: from,
-      message: message,
-      detected: 'inappropriate_content',
-      action: 'warning_issued'
-    });
-    
-    return; // Don't display inappropriate message
-  }
-  
   addChatMessage(`Stranger: ${message}`, "other");
 });
 
@@ -524,15 +439,6 @@ socket.on("partner-left", ({ reason }) => {
   statusBadge.textContent = "Disconnected";
   strangerLabel.textContent = "Stranger";
   remoteTag.textContent = "Stranger";
-  
-  // Safety logging for disconnections
-  console.log('[SAFETY_DISCONNECT]', {
-    timestamp: new Date().toISOString(),
-    reason: reason,
-    action: 'partner_disconnected',
-    user: username
-  });
-  
   addSystemMessage(reason || "Stranger left the chat.");
 });
 
