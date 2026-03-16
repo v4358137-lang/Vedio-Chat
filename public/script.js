@@ -7,11 +7,10 @@ const nameInput = document.getElementById("nameInput");
 const genderSelect = document.getElementById("genderSelect");
 const startBtn = document.getElementById("startBtn");
 
-// Age verification elements
-const verificationOverlay = document.getElementById("verificationOverlay");
-const ageCheckbox = document.getElementById("ageCheckbox");
-const agreeBtn = document.getElementById("agreeBtn");
-const disagreeBtn = document.getElementById("disagreeBtn");
+// Terms popup elements
+const termsOverlay = document.getElementById("termsOverlay");
+const termsCheckbox = document.getElementById("termsCheckbox");
+const acceptBtn = document.getElementById("acceptBtn");
 
 const localVideo = document.getElementById("localVideo");
 const remoteVideo = document.getElementById("remoteVideo");
@@ -35,39 +34,37 @@ let pendingCandidates = [];
 let isMuted = false;
 let isCameraOff = false;
 
-// Age Verification
-function checkAgeVerification() {
-  const ageVerified = localStorage.getItem('ageVerified');
-  if (ageVerified === 'true') {
-    verificationOverlay.style.display = 'none';
+// Terms verification
+function checkTermsVerification() {
+  const termsAccepted = localStorage.getItem('termsAccepted');
+  if (termsAccepted === 'true') {
+    termsOverlay.style.display = 'none';
     return true;
   } else {
-    verificationOverlay.style.display = 'flex';
+    termsOverlay.style.display = 'flex';
     return false;
   }
 }
 
-function setupAgeVerification() {
-  agreeBtn.addEventListener('click', () => {
-    if (ageCheckbox.checked) {
-      localStorage.setItem('ageVerified', 'true');
-      verificationOverlay.style.display = 'none';
-    } else {
-      alert('Please confirm you are 18 years or older to continue.');
+function setupTermsVerification() {
+  // Enable/disable accept button based on checkbox
+  termsCheckbox.addEventListener('change', () => {
+    acceptBtn.disabled = !termsCheckbox.checked;
+  });
+
+  acceptBtn.addEventListener('click', () => {
+    if (termsCheckbox.checked) {
+      localStorage.setItem('termsAccepted', 'true');
+      termsOverlay.style.display = 'none';
     }
   });
 
-  disagreeBtn.addEventListener('click', () => {
-    // Redirect away from site
-    window.location.href = 'https://www.google.com';
-  });
-
   // Auto-check on load
-  checkAgeVerification();
+  checkTermsVerification();
 }
 
-// Initialize age verification
-setupAgeVerification();
+// Initialize terms verification
+setupTermsVerification();
 
 let isMatched = false;
 let username = "";
