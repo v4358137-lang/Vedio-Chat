@@ -16,6 +16,16 @@ const PORT = process.env.PORT || 3000;
 // Serve static frontend assets.
 app.use(express.static(path.join(__dirname, "public")));
 
+// Root route to serve index.html
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
+
+// Health check endpoint for cloud platforms
+app.get("/health", (req, res) => {
+  res.status(200).json({ status: "ok", timestamp: new Date().toISOString() });
+});
+
 // Waiting pools by gender preference.
 const waitingPools = {
   male: [],
