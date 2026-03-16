@@ -46,9 +46,25 @@
         .age-verification-modal .checkbox-group {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 1rem;
             margin-bottom: 2rem;
             justify-content: center;
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+        .age-verification-modal input[type="checkbox"] {
+            width: 1.5rem;
+            height: 1.5rem;
+            margin-right: 0.5rem;
+        }
+        .age-verification-modal input[type="checkbox"]:checked + label {
+            background: #e8f5e8;
+            border: 2px solid #28a745;
+        }
+        .age-verification-modal input[type="checkbox"]:focus {
+            outline: 2px solid #007bff;
+            outline-offset: 2px;
         }
         .age-verification-modal button {
             margin: 0.5rem;
@@ -182,6 +198,46 @@
       <!-- No Recording Notice -->
       <div class="no-recording-notice">
         <p><strong>🔒 Privacy Notice:</strong> This platform does not record or store video chat conversations.</p>
+      </div>
+
+      <!-- Safety Rules and Theory -->
+      <div class="legal-disclaimer">
+        <h3>🛡️ Safety Rules & Theory</h3>
+        <p><strong>Our Safety Theory:</strong> Random video chat works best when everyone follows clear safety guidelines and respects platform boundaries.</p>
+        
+        <div style="margin-top: 1rem;">
+          <p><strong>🔒 Core Safety Principles:</strong></p>
+          <ul style="text-align: left; margin-left: 1rem;">
+            <li><strong>Privacy First:</strong> Conversations are peer-to-peer and never stored</li>
+            <li><strong>Consent Required:</strong> All participants must willingly engage</li>
+            <li><strong>Zero Tolerance:</strong> Inappropriate behavior results in immediate removal</li>
+            <li><strong>User Control:</strong> Each user controls their experience completely</li>
+            <li><strong>Immediate Action:</strong> Safety issues are addressed instantly</li>
+          </ul>
+        </div>
+        
+        <div style="margin-top: 1rem;">
+          <p><strong>📋 Prohibited Activities Theory:</strong></p>
+          <ul style="text-align: left; margin-left: 1rem;">
+            <li><strong>Illegal Content:</strong> Any illegal activities are strictly forbidden</li>
+            <li><strong>Exploitation:</strong> Using platform to harm or exploit others</li>
+            <li><strong>Spam/Scams:</strong> Fraudulent or deceptive activities</li>
+            <li><strong>Harassment:</strong> Bullying, threats, or abusive behavior</li>
+            <li><strong>Privacy Violation:</strong> Recording conversations without consent</li>
+            <li><strong>Age Violation:</strong> Underage users or misrepresentation</li>
+          </ul>
+        </div>
+        
+        <div style="margin-top: 1rem;">
+          <p><strong>🤝 Why Random Chat Works:</strong></p>
+          <ul style="text-align: left; margin-left: 1rem;">
+            <li><strong>Anonymity:</strong> Random matching reduces targeted harassment</li>
+            <li><strong>Fresh Interactions:</strong> Each conversation starts new without bias</li>
+            <li><strong>Equal Opportunity:</strong> Everyone has equal chance to connect</li>
+            <li><strong>Spontaneous:</strong> Natural conversations without pre-existing relationships</li>
+            <li><strong>Diverse Exposure:</strong> Meet people from different backgrounds</li>
+          </ul>
+        </div>
       </div>
 
       <section id="joinScreen" class="card join-card">
