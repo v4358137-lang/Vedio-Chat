@@ -7,6 +7,12 @@ const nameInput = document.getElementById("nameInput");
 const genderSelect = document.getElementById("genderSelect");
 const startBtn = document.getElementById("startBtn");
 
+// Age verification elements
+const ageVerificationOverlay = document.getElementById("ageVerificationOverlay");
+const ageCheckbox = document.getElementById("ageCheckbox");
+const agreeBtn = document.getElementById("agreeBtn");
+const disagreeBtn = document.getElementById("disagreeBtn");
+
 const localVideo = document.getElementById("localVideo");
 const remoteVideo = document.getElementById("remoteVideo");
 const remoteTag = document.getElementById("remoteTag");
@@ -28,9 +34,45 @@ let peerConnection = null;
 let pendingCandidates = [];
 let isMuted = false;
 let isCameraOff = false;
+
+// Age Verification
+function checkAgeVerification() {
+  const ageVerified = localStorage.getItem('ageVerified');
+  if (ageVerified === 'true') {
+    ageVerificationOverlay.style.display = 'none';
+    return true;
+  } else {
+    ageVerificationOverlay.style.display = 'flex';
+    return false;
+  }
+}
+
+function setupAgeVerification() {
+  agreeBtn.addEventListener('click', () => {
+    if (ageCheckbox.checked) {
+      localStorage.setItem('ageVerified', 'true');
+      ageVerificationOverlay.style.display = 'none';
+    } else {
+      alert('Please confirm you are 18 years or older to continue.');
+    }
+  });
+
+  disagreeBtn.addEventListener('click', () => {
+    // Redirect away from site
+    window.location.href = 'https://www.google.com';
+  });
+
+  // Auto-check on load
+  checkAgeVerification();
+}
+
+// Initialize age verification
+setupAgeVerification();
+
 let isMatched = false;
 let username = "";
 
+startBtn.addEventListener("click", startChatFlow);
 
 const rtcConfig = {
   iceServers: [
