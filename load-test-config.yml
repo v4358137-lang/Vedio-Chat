@@ -1,0 +1,76 @@
+config:
+  target: 'https://yourdomain.com'
+  phases:
+    # Warm up phase
+    - duration: 60
+      arrivalRate: 5
+      name: "Warm up"
+    
+    # Ramp up to 200 users
+    - duration: 120
+      arrivalRate: 10
+      name: "Ramp to 200"
+    
+    # Ramp up to 500 users  
+    - duration: 180
+      arrivalRate: 15
+      name: "Ramp to 500"
+    
+    # Peak load - 800+ users
+    - duration: 300
+      arrivalRate: 20
+      name: "Peak load 800+"
+    
+    # Sustained load
+    - duration: 600
+      arrivalRate: 25
+      name: "Sustained 1000+"
+
+  processor: "./test-processor.js"
+  
+  # WebSocket configuration
+  socketio:
+    engine: 'ws'
+    
+  # Default payload
+  payload:
+    path: "test-payload.json"
+
+scenarios:
+  - name: "Video Chat Connection"
+    weight: 70
+    engine: 'ws'
+    flow:
+      - connect:
+          target: "/socket.io/"
+      - think: 1 # Wait for connection
+      - send: '42["start-chat", {"name":"LoadTestUser${$randomString()}","gender":"male"}]'
+      - think: 2 # Wait for matching
+      - send: '42["chat-message", {"message":"Hello from load test at ${$timestamp()}"}]'
+      - think: 10 # Simulate chat duration
+      - send: '42["next"]' # Skip to next
+      - think: 5
+      - send: '42["end-chat"]'
+      - think: 2
+      - disconnect: {}
+
+  - name: "Quick Connection Test"
+    weight: 20
+    engine: 'ws'
+    flow:
+      - connect:
+          target: "/socket.io/"
+      - think: 1
+      - send: '42["request-stats"]'
+      - think: 1
+      - disconnect: {}
+
+  - name: "API Stress Test"
+    weight: 10
+    flow:
+      - get:
+          url: "/api/stats"
+      - think: 0.5
+      - get:
+          url: "/landing"
+      - think: 0.5
