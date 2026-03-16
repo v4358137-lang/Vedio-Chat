@@ -10,150 +10,161 @@
 <meta property="og:url" content="https://video-chat-server-f2wn.onrender.com">
     <link rel="stylesheet" href="/style.css" />
     <style>
-        .age-verification-overlay {
+        .verification-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.9);
+            background: linear-gradient(135deg, rgba(0,0,0,0.95) 0%, rgba(25,25,112,0.95) 100%);
             display: flex;
             align-items: center;
             justify-content: center;
             z-index: 10000;
+            backdrop-filter: blur(10px);
         }
-        .age-verification-modal {
-            background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-            max-width: 400px;
+        .verification-modal {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3), 0 10px 20px rgba(0,0,0,0.2);
+            max-width: 450px;
             text-align: center;
+            border: 2px solid transparent;
+            background-clip: padding-box;
+            animation: slideUp 0.5s ease-out;
         }
-        .age-verification-modal h2 {
-            color: #d63384;
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .verification-modal h2 {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 1.5rem;
-            font-size: 1.5rem;
+            font-size: 2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
-        .age-verification-modal p {
-            color: #666;
+        .verification-modal .icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        .verification-modal p {
+            color: #495057;
             line-height: 1.6;
             margin-bottom: 2rem;
+            font-size: 1.1rem;
         }
-        .age-verification-modal .form-group {
-            margin-bottom: 1.5rem;
+        .verification-modal .agreement-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 1.5rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            border-left: 4px solid #667eea;
         }
-        .age-verification-modal .checkbox-group {
+        .verification-modal .checkbox-group {
             display: flex;
             align-items: center;
             gap: 1rem;
             margin-bottom: 2rem;
             justify-content: center;
-            background: #f8f9fa;
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
             padding: 1.5rem;
-            border-radius: 8px;
+            border-radius: 15px;
+            transition: all 0.3s ease;
         }
-        .age-verification-modal input[type="checkbox"] {
-            width: 1.5rem;
-            height: 1.5rem;
-            margin-right: 0.5rem;
+        .verification-modal .checkbox-group:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
         }
-        .age-verification-modal input[type="checkbox"]:checked + label {
-            background: #e8f5e8;
-            border: 2px solid #28a745;
-        }
-        .age-verification-modal input[type="checkbox"]:focus {
-            outline: 2px solid #007bff;
-            outline-offset: 2px;
-        }
-        .age-verification-modal button {
-            margin: 0.5rem;
-            padding: 0.75rem 1.5rem;
-            border: none;
-            border-radius: 6px;
+        .verification-modal input[type="checkbox"] {
+            width: 1.8rem;
+            height: 1.8rem;
+            margin-right: 0.8rem;
             cursor: pointer;
-            font-weight: 500;
-            transition: all 0.2s;
+            accent-color: #667eea;
+        }
+        .verification-modal label {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2c3e50;
+            cursor: pointer;
+            user-select: none;
+            transition: color 0.3s ease;
+        }
+        .verification-modal label:hover {
+            color: #667eea;
+        }
+        .verification-modal .button-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+        .verification-modal button {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+        .verification-modal button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+        .verification-modal button:hover::before {
+            left: 100%;
         }
         .btn-agree {
-            background: #28a745;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
         }
         .btn-agree:hover {
-            background: #218838;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
         }
         .btn-disagree {
-            background: #dc3545;
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
             color: white;
+            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.4);
         }
         .btn-disagree:hover {
-            background: #c82333;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(231, 76, 60, 0.6);
         }
-        .legal-disclaimer {
-            background: #fff3cd;
-            border: 1px solid #ffeaa7;
-            border-radius: 8px;
-            padding: 1rem;
-            margin: 1rem 0;
-            color: #856404;
-            font-size: 0.9rem;
-            line-height: 1.4;
-        }
-        .user-responsibility {
-            background: #d1ecf1;
-            border: 1px solid #bee5eb;
-            border-radius: 8px;
-            padding: 1rem;
-            margin: 1rem 0;
-            color: #0c5460;
-            font-size: 0.9rem;
-            line-height: 1.4;
-        }
-        .safety-notice {
-            background: #f8d7da;
-            border: 1px solid #f5c6cb;
-            border-radius: 8px;
-            padding: 0.75rem;
-            margin: 1rem 0;
-            color: #721c24;
-            font-size: 0.85rem;
-            line-height: 1.4;
-            text-align: center;
-        }
-        .footer {
-            background: rgba(0, 0, 0, 0.1);
-            padding: 1rem;
-            text-align: center;
-            margin-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            font-size: 0.85rem;
-            padding: 0.25rem 0.5rem;
-            border-radius: 4px;
-            transition: all 0.2s;
-        }
-        .footer-links a:hover {
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-        }
-        .no-recording-notice {
-            background: #d4edda;
-            border: 1px solid #c3e6cb;
-            border-radius: 8px;
-            padding: 0.75rem;
-            margin: 1rem 0;
-            color: #155724;
-            font-size: 0.85rem;
-            text-align: center;
+        .verification-modal .divider {
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 1.5rem auto;
+            border-radius: 2px;
         }
     </style>
   </head>
@@ -167,76 +178,35 @@
         <p>meet new friends instantly</p>
       </header>
 
-      <!-- Age Verification Modal -->
-      <div id="ageVerificationOverlay" class="age-verification-overlay">
-        <div class="age-verification-modal">
-          <h2>🔞 Age Verification Required</h2>
-          <p>You must be 18 years or older to use this website. By clicking Agree, you confirm that you are at least 18 years old and agree to follow the website rules.</p>
+      <!-- Beautiful Age Verification Modal -->
+      <div id="verificationOverlay" class="verification-overlay">
+        <div class="verification-modal">
+          <div class="icon">🔞</div>
+          <h2>Age Verification</h2>
+          <p>Welcome to Find Friends! Before you can start meeting new people, we need to confirm you're old enough to use our platform.</p>
+          
+          <div class="agreement-section">
+            <p><strong>📋 User Agreement:</strong></p>
+            <ul style="text-align: left; margin: 1rem 0;">
+              <li>I am 18 years of age or older</li>
+              <li>I understand this is an adult video chat platform</li>
+              <li>I will follow community guidelines and respect others</li>
+              <li>I will not share personal information</li>
+              <li>I understand conversations are not recorded</li>
+            </ul>
+          </div>
+          
+          <div class="divider"></div>
           
           <div class="checkbox-group">
             <input type="checkbox" id="ageCheckbox">
-            <label for="ageCheckbox">I am 18 years or older</label>
+            <label for="ageCheckbox">I confirm I am 18+ years old</label>
           </div>
           
-          <div class="form-group">
-            <button id="agreeBtn" class="btn-agree">Agree & Continue</button>
-            <button id="disagreeBtn" class="btn-disagree">Disagree</button>
+          <div class="button-group">
+            <button id="agreeBtn" class="btn-agree">✓ Enter Platform</button>
+            <button id="disagreeBtn" class="btn-disagree">✗ Exit</button>
           </div>
-        </div>
-      </div>
-
-      <!-- Legal Disclaimer -->
-      <div class="legal-disclaimer">
-        <p><strong>⚖️ Legal Disclaimer:</strong> This website only provides a platform for random video chat between users. The website owner does not control, monitor, or take responsibility for user conversations or behavior. Users are solely responsible for their own actions while using the platform. The website owner is not responsible for any user-generated content, messages, or behavior. If users encounter inappropriate content or behavior, they should disconnect immediately.</p>
-      </div>
-
-      <!-- User Responsibility Notice -->
-      <div class="user-responsibility">
-        <p><strong>🛡️ User Responsibility:</strong> Users must not share personal information such as phone numbers, home addresses, financial details, or passwords while using this platform.</p>
-      </div>
-
-      <!-- No Recording Notice -->
-      <div class="no-recording-notice">
-        <p><strong>🔒 Privacy Notice:</strong> This platform does not record or store video chat conversations.</p>
-      </div>
-
-      <!-- Safety Rules and Theory -->
-      <div class="legal-disclaimer">
-        <h3>🛡️ Safety Rules & Theory</h3>
-        <p><strong>Our Safety Theory:</strong> Random video chat works best when everyone follows clear safety guidelines and respects platform boundaries.</p>
-        
-        <div style="margin-top: 1rem;">
-          <p><strong>🔒 Core Safety Principles:</strong></p>
-          <ul style="text-align: left; margin-left: 1rem;">
-            <li><strong>Privacy First:</strong> Conversations are peer-to-peer and never stored</li>
-            <li><strong>Consent Required:</strong> All participants must willingly engage</li>
-            <li><strong>Zero Tolerance:</strong> Inappropriate behavior results in immediate removal</li>
-            <li><strong>User Control:</strong> Each user controls their experience completely</li>
-            <li><strong>Immediate Action:</strong> Safety issues are addressed instantly</li>
-          </ul>
-        </div>
-        
-        <div style="margin-top: 1rem;">
-          <p><strong>📋 Prohibited Activities Theory:</strong></p>
-          <ul style="text-align: left; margin-left: 1rem;">
-            <li><strong>Illegal Content:</strong> Any illegal activities are strictly forbidden</li>
-            <li><strong>Exploitation:</strong> Using platform to harm or exploit others</li>
-            <li><strong>Spam/Scams:</strong> Fraudulent or deceptive activities</li>
-            <li><strong>Harassment:</strong> Bullying, threats, or abusive behavior</li>
-            <li><strong>Privacy Violation:</strong> Recording conversations without consent</li>
-            <li><strong>Age Violation:</strong> Underage users or misrepresentation</li>
-          </ul>
-        </div>
-        
-        <div style="margin-top: 1rem;">
-          <p><strong>🤝 Why Random Chat Works:</strong></p>
-          <ul style="text-align: left; margin-left: 1rem;">
-            <li><strong>Anonymity:</strong> Random matching reduces targeted harassment</li>
-            <li><strong>Fresh Interactions:</strong> Each conversation starts new without bias</li>
-            <li><strong>Equal Opportunity:</strong> Everyone has equal chance to connect</li>
-            <li><strong>Spontaneous:</strong> Natural conversations without pre-existing relationships</li>
-            <li><strong>Diverse Exposure:</strong> Meet people from different backgrounds</li>
-          </ul>
         </div>
       </div>
 
@@ -259,49 +229,6 @@
         </div>
 
         <button id="startBtn" class="btn btn-primary">Start Chat</button>
-      </section>
-
-      <section id="chatScreen" class="chat-layout hidden">
-        <div class="video-column">
-          <div class="status-card">
-            <span id="statusBadge" class="status-badge">Waiting...</span>
-            <span id="strangerLabel" class="stranger-label">Stranger</span>
-          </div>
-
-          <div class="video-grid">
-            <div class="video-box">
-              <video id="localVideo" autoplay playsinline muted></video>
-              <span class="video-tag">You</span>
-            </div>
-            <div class="video-box">
-              <video id="remoteVideo" autoplay playsinline></video>
-              <span class="video-tag" id="remoteTag">Stranger</span>
-            </div>
-          </div>
-
-          <div class="controls">
-            <button id="muteBtn" class="btn btn-dark">Mute</button>
-            <button id="cameraBtn" class="btn btn-dark">Camera Off</button>
-            <button id="nextBtn" class="btn btn-warning">Next</button>
-            <button id="endBtn" class="btn btn-danger">End Chat</button>
-            <button id="reportBtn" class="btn btn-outline">Report</button>
-          </div>
-        </div>
-
-        <!-- Safety Notice -->
-        <div class="safety-notice">
-          <p><strong>⚠️ Safety Notice:</strong> If someone behaves inappropriately, disconnect immediately. Report violations.</p>
-        </div>
-
-        <aside class="chat-column card">
-          <h3>Text Chat</h3>
-          <div id="messages" class="messages"></div>
-          <div id="typing" style="color: gray; font-size: 14px;"></div>
-          <div class="message-form">
-            <input id="messageInput" type="text" maxlength="500" placeholder="Type message..." />
-            <button id="sendBtn" class="btn btn-primary">Send</button>
-          </div>
-        </aside>
       </section>
     </main>
 
