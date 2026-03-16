@@ -2,31 +2,187 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="google-site-verification" content="u_2QFb0ffKSnyvM2zAhGAaLCd41JXdnUgFbClMS0wlE" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Free Random Video Chat – Talk with Strangers Online</title>
-
-<meta name="description"
-content="Free random video chat website. Meet strangers instantly with webcam. Safe, fast and anonymous video chat.">
-
-<meta name="keywords"
-content="video chat, random video chat, chat with strangers, free video chat">
+    <title>Find Friends</title>
+    <meta property="og:title" content="Find Friends">
 <meta property="og:description" content="Meet new friends instantly with video chat">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://video-chat-server-f2wn.onrender.com">
     <link rel="stylesheet" href="/style.css" />
+    <style>
+        .age-verification-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+        }
+        .age-verification-modal {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            max-width: 400px;
+            text-align: center;
+        }
+        .age-verification-modal h2 {
+            color: #d63384;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+        .age-verification-modal p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+        .age-verification-modal .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .age-verification-modal .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            justify-content: center;
+        }
+        .age-verification-modal button {
+            margin: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        .btn-agree {
+            background: #28a745;
+            color: white;
+        }
+        .btn-agree:hover {
+            background: #218838;
+        }
+        .btn-disagree {
+            background: #dc3545;
+            color: white;
+        }
+        .btn-disagree:hover {
+            background: #c82333;
+        }
+        .legal-disclaimer {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            color: #856404;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+        .user-responsibility {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            color: #0c5460;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+        .safety-notice {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            border-radius: 8px;
+            padding: 0.75rem;
+            margin: 1rem 0;
+            color: #721c24;
+            font-size: 0.85rem;
+            line-height: 1.4;
+            text-align: center;
+        }
+        .footer {
+            background: rgba(0, 0, 0, 0.1);
+            padding: 1rem;
+            text-align: center;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 0.85rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            transition: all 0.2s;
+        }
+        .footer-links a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+        .no-recording-notice {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            border-radius: 8px;
+            padding: 0.75rem;
+            margin: 1rem 0;
+            color: #155724;
+            font-size: 0.85rem;
+            text-align: center;
+        }
+    </style>
   </head>
   <body>
-    
-</section>
     <div class="bg-shape bg-shape-a"></div>
     <div class="bg-shape bg-shape-b"></div>
 
     <main class="app">
       <header class="topbar">
-        <h1>Random Video Chat - Talk to Strangers Online</h1>
+        <h1>Find friends </h1>
         <p>meet new friends instantly</p>
       </header>
+
+      <!-- Age Verification Modal -->
+      <div id="ageVerificationOverlay" class="age-verification-overlay">
+        <div class="age-verification-modal">
+          <h2>🔞 Age Verification Required</h2>
+          <p>You must be 18 years or older to use this website. By clicking Agree, you confirm that you are at least 18 years old and agree to follow the website rules.</p>
+          
+          <div class="checkbox-group">
+            <input type="checkbox" id="ageCheckbox">
+            <label for="ageCheckbox">I am 18 years or older</label>
+          </div>
+          
+          <div class="form-group">
+            <button id="agreeBtn" class="btn-agree">Agree & Continue</button>
+            <button id="disagreeBtn" class="btn-disagree">Disagree</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Legal Disclaimer -->
+      <div class="legal-disclaimer">
+        <p><strong>⚖️ Legal Disclaimer:</strong> This website only provides a platform for random video chat between users. The website owner does not control, monitor, or take responsibility for user conversations or behavior. Users are solely responsible for their own actions while using the platform. The website owner is not responsible for any user-generated content, messages, or behavior. If users encounter inappropriate content or behavior, they should disconnect immediately.</p>
+      </div>
+
+      <!-- User Responsibility Notice -->
+      <div class="user-responsibility">
+        <p><strong>🛡️ User Responsibility:</strong> Users must not share personal information such as phone numbers, home addresses, financial details, or passwords while using this platform.</p>
+      </div>
+
+      <!-- No Recording Notice -->
+      <div class="no-recording-notice">
+        <p><strong>🔒 Privacy Notice:</strong> This platform does not record or store video chat conversations.</p>
+      </div>
 
       <section id="joinScreen" class="card join-card">
         <h2>Start Chat</h2>
@@ -76,6 +232,11 @@ content="video chat, random video chat, chat with strangers, free video chat">
           </div>
         </div>
 
+        <!-- Safety Notice -->
+        <div class="safety-notice">
+          <p><strong>⚠️ Safety Notice:</strong> If someone behaves inappropriately, disconnect immediately. Report violations.</p>
+        </div>
+
         <aside class="chat-column card">
           <h3>Text Chat</h3>
           <div id="messages" class="messages"></div>
@@ -90,40 +251,5 @@ content="video chat, random video chat, chat with strangers, free video chat">
 
     <script src="/socket.io/socket.io.js"></script>
     <script src="script.js"></script>
-    <section style="max-width:900px;margin:auto;padding:40px;font-family:Arial;color:white">
-
-<h1>Random Video Chat – Meet New People Online</h1>
-
-<p>
-Our random video chat platform allows you to instantly connect with strangers from around the world.
-You can start a video conversation without creating an account. Just click the start button and begin chatting.
-</p>
-
-<h2>What is Random Video Chat?</h2>
-<p>
-Random video chat is a technology that connects two strangers through live video. The system automatically
-matches users so they can talk face-to-face online in real time.
-</p>
-
-<h2>How It Works</h2>
-<p>
-When you press the start button, our system searches for another online user and connects you instantly.
-If you want to talk with someone new, simply click next and the system will find another person.
-</p>
-
-<h2>Safety Rules</h2>
-<ul>
-<li>Be respectful to other users.</li>
-<li>Do not share personal information.</li>
-<li>Do not display inappropriate content.</li>
-<li>If someone behaves badly, disconnect immediately.</li>
-</ul>
-
-<h2>Meet Strangers from Around the World</h2>
-<p>
-Our free random video chat platform helps you meet people from different countries, cultures, and backgrounds.
-Start chatting now and discover new friends online.
-</p>
-
   </body>
 </html>
