@@ -1,258 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terms of Service - Find Friends</title>
-    <link rel="stylesheet" href="/style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Find Friends</title>
+    <meta property="og:title" content="Find Friends">
+<meta property="og:description" content="Meet new friends instantly with video chat">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://video-chat-server-f2wn.onrender.com">
+    <link rel="stylesheet" href="/style.css" />
     <style>
-        .terms-container {
-            max-width: 800px;
-            margin: 2rem auto;
-            padding: 2rem;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        .terms-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
         }
-        .terms-container h1 {
-            color: #333;
-            margin-bottom: 2rem;
+        .terms-modal {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            max-width: 350px;
             text-align: center;
         }
-        .terms-container h2 {
-            color: #d63384;
-            margin-top: 2rem;
+        .terms-modal h3 {
+            color: #333;
             margin-bottom: 1rem;
-            border-bottom: 2px solid #d63384;
-            padding-bottom: 0.5rem;
+            font-size: 1.2rem;
         }
-        .terms-container p, .terms-container li {
-            line-height: 1.6;
+        .terms-modal p {
             color: #666;
-            margin-bottom: 1rem;
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
         }
-        .terms-container ul {
-            margin-left: 2rem;
+        .terms-modal .checkbox-group {
+            margin-bottom: 1.5rem;
         }
-        .back-btn {
-            display: inline-block;
-            margin: 1rem 0;
-            padding: 0.75rem 1.5rem;
+        .terms-modal input[type="checkbox"] {
+            margin-right: 0.5rem;
+        }
+        .terms-modal button {
+            padding: 0.5rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            margin: 0 0.5rem;
+        }
+        .btn-accept {
             background: #007bff;
             color: white;
-            text-decoration: none;
-            border-radius: 6px;
-            transition: background 0.2s;
         }
-        .back-btn:hover {
+        .btn-accept:hover {
             background: #0056b3;
         }
-        .disclaimer-box {
-            background: #fff3cd;
-            border: 1px solid #ffeaa7;
-            border-radius: 8px;
-            padding: 1rem;
-            margin: 1rem 0;
-        }
-        .warning-box {
-            background: #f8d7da;
-            border: 1px solid #f5c6cb;
-            border-radius: 8px;
-            padding: 1rem;
-            margin: 1rem 0;
-        }
-        .important-box {
-            background: #d1ecf1;
-            border: 1px solid #bee5eb;
-            border-radius: 8px;
-            padding: 1rem;
-            margin: 1rem 0;
+        .btn-accept:disabled {
+            background: #6c757d;
+            cursor: not-allowed;
         }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="bg-shape bg-shape-a"></div>
     <div class="bg-shape bg-shape-b"></div>
 
     <main class="app">
-        <div class="terms-container">
-            <a href="/" class="back-btn">← Back to Site</a>
-            <h1>Terms of Service</h1>
-            <p><strong>Last Updated:</strong> December 2024</p>
+      <header class="topbar">
+        <h1>Find friends </h1>
+        <p>meet new friends instantly</p>
+      </header>
 
-            <div class="disclaimer-box">
-                <h2>⚖️ LEGAL DISCLAIMER
-                  Welcome to "find friends". this site is a platform that allows users to engage in spontaneous conversations through text and video chat. By accessing or using this service, you agree to follow these Community Rules and our Terms of Service. These rules apply to all parts of the platform.
-
-18+ Only
-this site  is strictly intended for adults. All users must be at least 18 years of age to use this service. Minors are strictly prohibited from accessing the platform under any circumstances. By using this site  you confirm that you are 18 years of age or older.
-
-If you encounter a user who appears to be under 18, please use the report feature during the chat session so our moderation system can review the situation.
-
-Inappropriate Conduct
-Users must not engage in illegal, harmful, or inappropriate behavior. Any violation may result in suspension or permanent removal from the platform. Prohibited behavior includes but is not limited to:
-
-Abuse and Harassment
-Users must treat others with respect. Hate speech, threats, harassment, bullying, or discriminatory language based on race, ethnicity, religion, gender, sexual orientation, or any personal characteristic is strictly prohibited.
-
-Sexual or Explicit Content
-Nudity, sexually explicit behavior, or any inappropriate sexual content is not allowed. Users should keep video chats appropriate and respectful.
-
-Illegal Activities
-Displaying or promoting illegal activities, violence, drug use, self-harm, or dangerous actions is prohibited.
-
-Spam, Advertising, or Promotion
-this site  is intended for genuine conversations. Users must not send spam, advertise products or services, promote businesses, or repeatedly post links.
-
-Impersonation
-Users must not impersonate another individual, organization, or identity. The use of pre-recorded videos, deceptive media, or technologies intended to mislead others is prohibited.
-
-Disruptive Content
-Users must not send repetitive messages, irrelevant content, or disruptive material. Cameras should be used appropriately and should not display screens, images, or unrelated media instead of the user.
-
-Third-Party Software or Automation
-The use of bots, automated scripts, unauthorized software, or any attempt to manipulate the platform is strictly prohibited.
-
-Privacy and Personal Safety
-Users should never share personal information such as full names, home addresses, phone numbers, financial details, passwords, or private social media accounts. If another user requests this information, you should disconnect immediately and report the user.
-
-Moderation and User Responsibility
-this site uses automated systems and moderation tools to help enforce these rules. However, conversations occur between independent users, and each user is solely responsible for their own behavior and content.
-
-this site  does not monitor every interaction in real time and cannot guarantee the actions of other users. By using the platform, you acknowledge that you are responsible for your own safety and conduct.
-
-Enforcement
-We reserve the right to review activity and take appropriate action if these rules are violated. This may include warnings, temporary suspensions, permanent bans, or reporting to relevant authorities if required by law.
-
-By continuing to use this site, you agree to follow these rules and help maintain a respectful and safe environment for all users.
-</h2>
-                <p><strong>NO ONE IS RESPONSIBLE FOR HAPPENINGS ON THIS WEBSITE</strong></p>
-                <p>This platform is provided strictly for entertainment purposes only. The website owner, operators, and service providers are NOT responsible for any events, interactions, relationships, or outcomes that occur between users.</p>
-                <p>Users engage with this platform at their own risk and are solely responsible for their actions, decisions, and consequences.</p>
-            </div>
-
-            <h2>1. Platform Purpose</h2>
-            <p>Find Friends provides a technical platform that enables random video chat connections between users. The service is limited to facilitating connections and does not control, monitor, or influence user interactions.</p>
-
-            <h2>2. User Responsibilities</h2>
-            <div class="important-box">
-                <p><strong>Users are solely responsible for:</strong></p>
-                <ul>
-                    <li>Their own actions and behavior while using the platform</li>
-                    <li>Protecting their personal information and privacy</li>
-                    <li>Verifying information shared by other users</li>
-                    <li>Following local laws and regulations in their jurisdiction</li>
-                    <li>Reporting inappropriate behavior to authorities when necessary</li>
-                    <li>Maintaining respectful and appropriate conduct</li>
-                </ul>
-            </div>
-
-            <h2>3. Prohibited Behavior</h2>
-            <div class="warning-box">
-                <p><strong>Strictly Prohibited:</strong></p>
-                <ul>
-                    <li>Illegal activities or discussions</li>
-                    <li>Harassment, bullying, or threatening behavior</li>
-                    <li>Sharing explicit or pornographic content</li>
-                    <li>Scamming, fraud, or deceptive practices</li>
-                    <li>Recording conversations without consent</li>
-                    <li>Sharing personal information (phone, address, financial details)</li>
-                    <li>Spamming or unwanted advertising</li>
-                    <li>Hate speech or discrimination</li>
-                    <li>Violence or dangerous activities</li>
-                </ul>
-            </div>
-
-            <h2>4. Disclaimer of Responsibility</h2>
-            <div class="disclaimer-box">
-                <p><strong>Platform Limitation:</strong></p>
-                <ul>
-                    <li>The website owner does NOT control user conversations or behavior</li>
-                    <li>The platform does NOT monitor or moderate real-time interactions</li>
-                    <li>The service does NOT verify user identities or information</li>
-                    <li>The platform is NOT responsible for user-generated content</li>
-                    <li>The website does NOT record or store video conversations</li>
-                    <li>The service is NOT liable for relationships formed or ended</li>
-                    <li>The platform is NOT responsible for financial losses or damages</li>
-                </ul>
-            </div>
-
-            <h2>5. Personal Information Protection</h2>
-            <div class="important-box">
-                <p><strong>Users MUST NOT share:</strong></p>
-                <ul>
-                    <li>Phone numbers or contact information</li>
-                    <li>Home addresses or location details</li>
-                    <li>Financial information (bank accounts, credit cards)</li>
-                    <li>Passwords or account credentials</li>
-                    <li>Social media profiles or personal accounts</li>
-                    <li>Intimate photos or videos</li>
-                    <li>Workplace or school information</li>
-                </ul>
-            </div>
-
-            <h2>6. Platform Service Only</h2>
-            <div class="disclaimer-box">
-                <p><strong>CONNECTION SERVICE ONLY:</strong></p>
-                <ul>
-                    <li>This platform ONLY provides technical infrastructure for connections</li>
-                    <li>The service does NOT create, host, or control content</li>
-                    <li>All conversations occur directly between users (peer-to-peer)</li>
-                    <li>The platform does NOT act as moderator or mediator</li>
-                    <li>Users interact independently without platform intervention</li>
-                    <li>The service is limited to connection facilitation only</li>
-                </ul>
-            </div>
-
-            <h2>7. Safety Rules</h2>
-            <div class="important-box">
-                <p><strong>Mandatory Safety Rules:</strong></p>
-                <ul>
-                    <li>Disconnect immediately from inappropriate conversations</li>
-                    <li>Report violations using platform reporting tools</li>
-                    <li>Block users who make you uncomfortable</li>
-                    <li>Never share personal information with strangers</li>
-                    <li>Trust your instincts - if something feels wrong, leave</li>
-                    <li>Keep conversations respectful and appropriate</li>
-                    <li>Be aware that other users may misrepresent themselves</li>
-                </ul>
-            </div>
-
-            <h2>8. Legal Protection</h2>
-            <div class="disclaimer-box">
-                <p><strong>ENTERTAINMENT PURPOSES ONLY:</strong></p>
-                <ul>
-                    <li>This platform is intended for entertainment and social interaction only</li>
-                    <li>The service is NOT suitable for professional or business purposes</li>
-                    <li>Users should NOT rely on this platform for serious relationships</li>
-                    <li>The website is NOT responsible for emotional or psychological impacts</li>
-                    <li>Users should maintain emotional boundaries and mental health</li>
-                    <li>The platform does NOT provide professional counseling or support</li>
-                    <li>All interactions are voluntary and at user's own risk</li>
-                </ul>
-            </div>
-
-            <h2>9. Privacy and Data</h2>
-            <ul>
-                <li>Video and audio streams are transmitted peer-to-peer (P2P)</li>
-                <li>The platform does NOT record or store conversations</li>
-                <li>Minimal technical data is collected for service operation</li>
-                <li>All data transmission uses encryption (HTTPS/WSS)</li>
-                <li>Users have right to request data deletion</li>
-            </ul>
-            <p>We may terminate or suspend access to our service immediately, without prior notice or liability, for any reason whatsoever, including without limitation if you breach the Terms.</p>
-
-            <h2>11. Governing Law</h2>
-            <p>These terms shall be interpreted and governed by the laws of the jurisdiction in which the service operates, without regard to conflict of law provisions.</p>
-
-            <h2>12. Contact Information</h2>
-            <p>For questions about these Terms of Service, please contact us through the platform's reporting system.</p>
-
-            <h2>13. Changes to Terms</h2>
-            <p>We reserve the right to modify these terms at any time. Changes will be effective immediately upon posting. Your continued use of the service constitutes acceptance of any changes.</p>
-
-            <a href="/" class="back-btn">← Back to Site</a>
+      <!-- Simple Terms Popup -->
+      <div id="termsOverlay" class="terms-overlay">
+        <div class="terms-modal">
+          <h3>Terms of Service</h3>
+          <p>Please agree to our Terms of Service to continue.</p>
+          
+          <div class="checkbox-group">
+            <input type="checkbox" id="termsCheckbox">
+            <label for="termsCheckbox">I agree to Terms of Service.</label>
+          </div>
+          
+          <div>
+            <a href="/terms" target="_blank" style="color: #007bff; text-decoration: none;">View Terms of Service</a>
+          </div>
+          
+          <div>
+            <button id="acceptBtn" class="btn-accept" disabled>Agree</button>
+          </div>
         </div>
+      </div>
+
+      <section id="joinScreen" class="card join-card">
+        <h2>Start Chat</h2>
+        <p class="muted">Enter your details to connect with a random stranger.</p>
+
+        <div class="form-group">
+          <label for="nameInput">Name</label>
+          <input id="nameInput" type="text" maxlength="30" placeholder="Your name" />
+        </div>
+
+        <div class="form-group">
+          <label for="genderSelect">Gender</label>
+          <select id="genderSelect">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <button id="startBtn" class="btn btn-primary">Start Chat</button>
+      </section>
     </main>
-</body>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+  </body>
 </html>
